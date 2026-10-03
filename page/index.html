@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KEV x STIG Coverage - Bedim Security</title>
+<meta name="description" content="Live check: how many of CISA's known-exploited vulnerabilities (KEV) touch the platforms Bedim Security maintains DISA STIG baselines for. Routed is not remediated - the gap is published too.">
+<link rel="canonical" href="https://bedimsecurity.com/capabilities/kevstig/">
+<meta property="og:title" content="KEV x STIG Coverage - Bedim Security">
+<meta property="og:description" content="How many known-exploited vulnerabilities touch the platforms we maintain DISA STIG baselines for - and how many do not.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#1a2233">
+<style>
+  :root { --slate-900:#1a2233; --gold-500:#c9a96a; --gold-ink:#8a6a2b; --paper:#fbfaf7; --ink:#242b3a; --muted:#5b6478; --line:#e3ded2; --block:#141b2d; --block-line:#2a3550; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.65 Georgia, 'Times New Roman', serif; }
+  .wrap { max-width:64ch; margin:0 auto; padding:0 20px; }
+  header.site { background:var(--slate-900); color:#f4efe6; }
+  header.site .wrap { padding:18px 20px; }
+  h1, h2, h3 { font-family:Georgia, serif; color:var(--slate-900); line-height:1.25; }
+  h1 { font-size:1.9rem; margin:0 0 .3em; }
+  h2 { font-size:1.3rem; margin-top:2em; }
+  a { color:var(--gold-ink); }
+  nav ul { list-style:none; display:flex; flex-wrap:wrap; gap:1.1em; margin:0; padding:0; font-size:.95rem; }
+  nav a { color:var(--gold-500); text-decoration:none; }
+  nav a[aria-current] { color:#fff; border-bottom:2px solid var(--gold-500); }
+  .lede { color:var(--muted); font-size:1.05rem; margin-top:.4em; }
+  .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin:1.6em 0; }
+  .metric { border:1px solid var(--line); border-radius:6px; padding:12px 14px; background:#fff; }
+  .metric .n { font-size:1.6rem; font-weight:bold; color:var(--slate-900); display:block; }
+  .metric .l { font-size:.85rem; color:var(--muted); }
+  .stamp { font-size:.85rem; color:var(--muted); }
+  .controls { display:flex; flex-wrap:wrap; gap:10px; margin:1em 0; }
+  input[type="search"], select { font:inherit; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink); min-width:240px; }
+  table { border-collapse:collapse; width:100%; font-size:.92rem; margin:1em 0; }
+  th, td { text-align:left; padding:7px 9px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { color:var(--muted); font-weight:normal; text-transform:uppercase; font-size:.74rem; letter-spacing:.04em; }
+  td code { font-family:ui-monospace, Menlo, monospace; font-size:.86rem; }
+  .badge { display:inline-block; border:1px solid var(--line); border-radius:4px; padding:1px 7px; font-size:.78rem; color:var(--gold-ink); margin:1px 2px 1px 0; background:#fff; }
+  .badge.miss { color:#8b2e2e; border-color:#d8b4b4; }
+  .demo-block { background:var(--block); color:#e8e4d8; border:1px solid var(--block-line); border-radius:8px; padding:14px 16px; }
+  .muted { color:var(--muted); }
+  footer.site { margin-top:3em; padding:1.4em 0 2.4em; border-top:1px solid var(--line); font-size:.88rem; color:var(--muted); }
+  .skip { font-size:.85rem; color:var(--muted); }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <nav aria-label="Core">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/capabilities/" aria-current="page">Capabilities</a></li>
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/news/">News</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <h1>KEV &times; STIG coverage checker</h1>
+  <p class="lede">A live routing table: how many of CISA's known-exploited
+  vulnerabilities touch the platforms we maintain DISA STIG baselines for
+  &mdash; and how many do not. The gap is published, not hidden.</p>
+
+  <section aria-label="Headline metrics">
+    <div class="metrics" id="metrics">
+      <div class="metric"><span class="n" id="m-cat">&mdash;</span><span class="l">KEV entries in catalog</span></div>
+      <div class="metric"><span class="n" id="m-routed">&mdash;</span><span class="l">route to our maintained baselines</span></div>
+      <div class="metric"><span class="n" id="m-uncovered">&mdash;</span><span class="l">touch no baseline we maintain</span></div>
+      <div class="metric"><span class="n" id="m-rules">&mdash;</span><span class="l">STIG rules maintained across the set</span></div>
+    </div>
+    <p class="stamp" id="stamp">loading&hellip;</p>
+  </section>
+
+  <h2>Check a CVE</h2>
+  <div class="controls">
+    <input type="search" id="q" placeholder="CVE id, product, or keyword" aria-label="Search the KEV catalog">
+    <select id="plat" aria-label="Filter by platform">
+      <option value="">All platforms</option>
+    </select>
+  </div>
+  <p class="skip" id="count"></p>
+  <div class="demo-block" style="max-height:520px; overflow:auto;">
+    <table>
+      <thead><tr><th>CVE</th><th>Added</th><th>Product</th><th>Name</th><th>Routes to</th></tr></thead>
+      <tbody id="rows"><tr><td colspan="5" class="muted">loading&hellip;</td></tr></tbody>
+    </table>
+  </div>
+
+  <h2>Platform scoreboard</h2>
+  <p id="board" class="demo-block">loading&hellip;</p>
+
+  <h2>Methodology and honest caveats</h2>
+  <ul>
+    <li><strong>Routed is not remediated.</strong> DISA manual STIGs harden
+    configuration; they do not patch individual CVEs. A KEV entry routed to
+    "Windows" means your Windows estate's hardening conversation belongs to a
+    baseline we maintain &mdash; not that a specific rule neutralizes that CVE.</li>
+    <li><strong>The routing table is curated.</strong> KEV product/vendor text is
+    matched against the platform families we maintain
+    (Windows, macOS, RHEL 7/8/9, Ubuntu 20.04/22.04/24.04, vSphere 6.7,
+    Firefox; Proxmox baseline in build). Versioned in the
+    <a id="repolink" href="https://github.com/dmrobbi/kevstig">kevstig repo</a>
+    &mdash; corrections are welcome as pull requests.</li>
+    <li><strong>The gap is the artifact.</strong> The uncovered count (appliances,
+    web apps, network gear, closed ecosystems) is published deliberately: it is
+    the honest boundary of our maintained set and the workload plan behind our
+    crosswalk work.</li>
+    <li>Source: <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog">CISA Known Exploited Vulnerabilities catalog</a>
+    (JSON feed), refreshed daily by an automated job; baseline counts measured
+    from the maintained checklists at generation time.</li>
+  </ul>
+
+  <footer class="site">
+    <p>Composed and maintained by the Bedim Security agent fleet under human
+    supervision. Back to <a href="/capabilities/">Capabilities</a>.</p>
+  </footer>
+</main>
+<script>
+(function () {
+  var esc = function (s) { var d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML; };
+  var state = { data: null };
+  fetch('api/coverage.json').then(function (r) { return r.json(); }).then(function (d) {
+    state.data = d;
+    document.getElementById('m-cat').textContent = d.catalog_count;
+    document.getElementById('m-routed').textContent = d.routed_count;
+    document.getElementById('m-uncovered').textContent = d.uncovered_count;
+    var rules = d.platforms.reduce(function (a, p) { return a + p.rules_maintained; }, 0);
+    document.getElementById('m-rules').textContent = rules;
+    document.getElementById('stamp').textContent = 'Catalog version ' + d.catalog_date + ' | dataset generated ' + d.generated_at + ' UTC | refresh: daily, automated';
+    var sel = document.getElementById('plat');
+    d.platforms.forEach(function (p) {
+      var o = document.createElement('option');
+      o.value = p.platform; o.textContent = p.label + ' (' + p.kev_routed_total + ')';
+      sel.appendChild(o);
+    });
+    var board = '<table><thead><tr><th>Platform</th><th>KEV routed (30d)</th><th>Rules maintained</th><th>Checklists</th></tr></thead><tbody>';
+    d.platforms.forEach(function (p) {
+      board += '<tr><td>' + esc(p.label) + '</td><td>' + p.kev_routed_total + ' (' + p.kev_routed_30d + ')</td><td>' + p.rules_maintained + '</td><td>' + p.ckls + '</td></tr>';
+    });
+    board += '</tbody></table>';
+    document.getElementById('board').innerHTML = board;
+    render();
+    document.getElementById('q').addEventListener('input', render);
+    document.getElementById('plat').addEventListener('change', render);
+  });
+  function render() {
+    if (!state.data) return;
+    var q = document.getElementById('q').value.trim().toLowerCase();
+    var p = document.getElementById('plat').value;
+    var rows = state.data.entries.filter(function (e) {
+      if (p && e.platforms.indexOf(p) === -1) return false;
+      if (!q) return true;
+      return (e.cve + ' ' + e.product + ' ' + e.vendor + ' ' + e.name).toLowerCase().indexOf(q) !== -1;
+    });
+    var shown = rows.slice(0, 60);
+    var body = shown.map(function (e) {
+      var tags = e.platforms.map(function (t) { return '<span class="badge">' + esc(t) + '</span>'; }).join(' ');
+      if (!e.platforms.length) tags = '<span class="badge miss">no maintained baseline</span>';
+      return '<tr><td><code>' + esc(e.cve) + '</code></td><td>' + esc(e.dateAdded) + '</td><td>' + esc(e.product) + '</td><td>' + esc(e.name) + '</td><td>' + tags + '</td></tr>';
+    }).join('');
+    document.getElementById('rows').innerHTML = body || '<tr><td colspan="5" class="muted">no matches</td></tr>';
+    document.getElementById('count').textContent = 'showing ' + shown.length + ' of ' + rows.length + ' matching entries (render capped at 60)';
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "note": "kevstig routing table (curated). Families are ordered; first family whose match hits the KEV (vendor + product) text wins; version_hints refine within a family, falling back to all platforms of the family when the version is unstated. Platform keys match baselines/ directory names in stig-baselines. Platforms we do NOT maintain are left uncovered on purpose (honest gap).",
+  "families": [
+    {"match": ["mozilla firefox", " firefox ", "firefox"], "platforms": {"firefox": "Mozilla Firefox"}, "version_hints": []},
+    {"match": ["proxmox"], "platforms": {"proxmox": "Proxmox VE"}, "version_hints": []},
+    {"match": ["vsphere", "esxi", "vcenter", "vcenter"], "platforms": {"vsphere67": "VMware vSphere 6.7 (legacy track)"}, "version_hints": []},
+    {"match": ["mac os", "macos", "apple os x", "os x"], "platforms": {"macos": "Apple macOS"}, "version_hints": []},
+    {"match": ["windows server 2016", "windows server 2019", "windows server 2022", "windows server", "windows 10", "windows 11", "windows"], "platforms": {"windows": "Microsoft Windows (all editions)"}, "version_hints": []},
+    {"match": ["ubuntu"], "platforms": {"ubuntu20.04": "Ubuntu 20.04 LTS", "ubuntu22.04": "Ubuntu 22.04 LTS", "ubuntu24.04": "Ubuntu 24.04 LTS"}, "version_hints": [
+      {"regex": "20\\.04", "platforms": ["ubuntu20.04"]},
+      {"regex": "22\\.04", "platforms": ["ubuntu22.04"]},
+      {"regex": "24\\.04", "platforms": ["ubuntu24.04"]}
+    ]},
+    {"match": ["red hat", "redhat"], "strict": true, "platforms": {"rhel8": "RHEL 8", "rhel9": "RHEL 9", "rhel7": "RHEL 7 (EOL track)"}, "version_hints": [
+      {"regex": "(enterprise linux|rhel|red hat linux)[\\s_~-]*7", "platforms": ["rhel7"]},
+      {"regex": "(enterprise linux|rhel|red hat linux)[\\s_~-]*8", "platforms": ["rhel8"]},
+      {"regex": "(enterprise linux|rhel|red hat linux)[\\s_~-]*9", "platforms": ["rhel9"]},
+      {"regex": "(polkit|pkexec|libuser|abrt|kernel|glibc|linux)", "platforms": ["rhel7", "rhel8", "rhel9"]}
+    ]}
+  ],
+  "secondary_families": [],
+  "ckl_hints": {
+    "rhel9": "RHEL_9|Rhel9",
+    "rhel8": "RHEL_8|Rhel8",
+    "rhel7": "RHEL_7|Rhel7",
+    "ubuntu20.04": "Ubuntu[_ ]?(20)?[._-]?04",
+    "ubuntu22.04": "Ubuntu[_ ]?(22)?[._-]?04",
+    "ubuntu24.04": "Ubuntu[_ ]?(24)?[._-]?04",
+    "windows": "Windows|Windows",
+    "macos": "macOS|MacOS|mac_?os",
+    "firefox": "Firefox",
+    "vsphere67": "[vV][sS]phere|ESXi|ESX|vCenter",
+    "proxmox": "Proxmox|PVE"
+  }
+}

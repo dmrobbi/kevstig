@@ -3,7 +3,7 @@
   "families": [
     {"match": ["mozilla firefox", " firefox ", "firefox"], "platforms": {"firefox": "Mozilla Firefox"}, "version_hints": []},
     {"match": ["proxmox"], "platforms": {"proxmox": "Proxmox VE"}, "version_hints": []},
-    {"match": ["vsphere", "esxi", "vcenter", "vcenter"], "platforms": {"vsphere67": "VMware vSphere 6.7 (legacy track)"}, "version_hints": []},
+    {"match": ["vsphere", "esxi", "vcenter"], "platforms": {"vsphere67": "VMware vSphere (all versions; maintained STIG: 6.7)"}, "version_hints": []},
     {"match": ["mac os", "macos", "apple os x", "os x"], "platforms": {"macos": "Apple macOS"}, "version_hints": []},
     {"match": ["windows server 2016", "windows server 2019", "windows server 2022", "windows server", "windows 10", "windows 11", "windows"], "platforms": {"windows": "Microsoft Windows (all editions)"}, "version_hints": []},
     {"match": ["ubuntu"], "platforms": {"ubuntu20.04": "Ubuntu 20.04 LTS", "ubuntu22.04": "Ubuntu 22.04 LTS", "ubuntu24.04": "Ubuntu 24.04 LTS"}, "version_hints": [

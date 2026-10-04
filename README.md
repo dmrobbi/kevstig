@@ -11,8 +11,7 @@ Live at: https://bedimsecurity.com/capabilities/kevstig/
   maintain a manual STIG baseline for (Windows, macOS, RHEL 7/8/9,
   Ubuntu 20.04/22.04/24.04, Firefox; Proxmox in build). The **VMware vSphere
   family routes all versions** — the match keys `vsphere`, `esxi`, `vcenter`
-  hit every ESXi, vCenter Server, and vSphere string regardless of version;
-  the maintained manual STIG baseline for the family is the 6.7 STIG today.
+  hit every ESXi, vCenter Server, and vSphere string regardless of version.
 - **Routed is NOT remediated.** DISA manual STIGs harden configuration; they do
   not patch individual CVEs. Nothing here claims a rule neutralizes a specific
   CVE — the STIG XMLs we parse carry no CVE references (verified: 0 hits).

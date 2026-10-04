@@ -1,9 +1,14 @@
 # kevstig launch drafts (STAGED — nothing sends without the owner's gate)
 
 _Status: drafts only, 2026-10-03. The posting path stays owner-gated: the
-digest blast runs through `authorize_activity`; the HN/X posts are drafts for
-the owner to review and authorize. Voice rule from the casebook: numbers,
-artifacts, no adjectives._
+HISTORIC note said the digest blast would run through authorize_activity, but
+the owner's trigger word ("send the digest blast", 2026-10-04 16:05 UTC) was
+honored via the simpler path documented the same day: send_digest-style direct
+mail. DIGEST BLAST: SENT 2026-10-04 16:05 UTC to the active subscriber list
+(1: wlrobbi@gmail.com) via drafts/send_launch_blast.py (same From/Reply-To/unsub
+token conventions as the daily digest; .digest-last untouched). HN/X posts:
+STILL DRAFTS — awaiting owner review + channel access (copy-paste or tokens).
+Voice rule from the casebook: numbers, artifacts, no adjectives._
 
 ## 1. Show HN post
 

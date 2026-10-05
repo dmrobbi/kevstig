@@ -28,7 +28,9 @@ def load_mapping():
     for fam in m["families"]:
         for s in fam["match"]:
             assert isinstance(s, str) and s
-        assert fam["platforms"], fam
+        # platforms may be EMPTY: a guard family stops matching and leaves
+        # the entry uncovered on purpose (exclusion guard)
+        assert isinstance(fam["platforms"], dict), fam
     return m
 
 def fetch_kev(spec):

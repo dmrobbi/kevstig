@@ -1,9 +1,25 @@
 {
-  "note": "kevstig routing table (curated). Families are ordered; first family whose match hits the KEV (vendor + product) text wins; version_hints refine within a family, falling back to all platforms of the family when the version is unstated. Platform keys match baselines/ directory names in stig-baselines. Platforms we do NOT maintain are left uncovered on purpose (honest gap).",
+  "note": "kevstig routing table (curated). Families are ordered; first family whose match hits the KEV (vendor + product) text wins; version_hints refine within a family, falling back to all platforms of the family when the version is unstated. An EMPTY-platforms family is a deliberate EXCLUSION GUARD: it stops matching and leaves the entry uncovered (e.g. NetScaler-era Citrix ADCs, Aria Operations for Networks, Horizon DaaS, IKE 'key exchange' strings that contain the substring 'exchange' but are not Microsoft Exchange). Platform keys match baselines/ directory names in stig-baselines. Platforms we do NOT maintain are left uncovered on purpose (honest gap).",
   "families": [
     {"match": ["mozilla firefox", " firefox ", "firefox"], "platforms": {"firefox": "Mozilla Firefox"}, "version_hints": []},
     {"match": ["proxmox"], "platforms": {"proxmox": "Proxmox VE"}, "version_hints": []},
-    {"match": ["vsphere", "esxi", "vcenter"], "platforms": {"vsphere67": "VMware vSphere (all versions)"}, "version_hints": []},
+    {"match": ["vsphere", "esxi", "vcenter"], "platforms": {"vsphere65": "VMware vSphere 6.5", "vsphere67": "VMware vSphere 6.7", "vsphere70": "VMware vSphere 7.0", "vsphere80": "VMware vSphere 8.0"}, "version_hints": [
+      {"regex": "6\\.5", "platforms": ["vsphere65"]},
+      {"regex": "6\\.7", "platforms": ["vsphere67"]},
+      {"regex": "7\\.0", "platforms": ["vsphere70"]},
+      {"regex": "8\\.0", "platforms": ["vsphere80"]}
+    ]},
+    {"match": ["nsx"], "platforms": {"nsx": "VMware NSX"}, "version_hints": []},
+    {"match": ["operations for networks"], "platforms": {}, "version_hints": []},
+    {"match": ["vrealize operations", "aria operations"], "platforms": {"vrops6": "VMware vRealize Operations 6.x"}, "version_hints": []},
+    {"match": ["vrealize automation"], "platforms": {"vra7": "VMware vRealize Automation 7.x"}, "version_hints": []},
+    {"match": ["horizon daas"], "platforms": {}, "version_hints": []},
+    {"match": ["horizon"], "platforms": {"horizon": "VMware Horizon 7.13"}, "version_hints": []},
+    {"match": ["workspace one uem", "airwatch"], "platforms": {"workspace_one": "VMware Workspace ONE UEM"}, "version_hints": []},
+    {"match": ["xendesktop", "xenapp", "citrix virtual apps", "citrix virtual desktop", "citrix storefront", "citrix workspace", "citrix receiver", "citrix delivery controller", "citrix license server"], "platforms": {"citrix": "Citrix Virtual Apps and Desktops"}, "version_hints": []},
+    {"match": ["key exchange"], "platforms": {}, "version_hints": []},
+    {"match": ["exchange server", "microsoft exchange"], "platforms": {"exchange": "Microsoft Exchange"}, "version_hints": []},
+    {"match": ["outlook"], "platforms": {"outlook": "Microsoft Outlook"}, "version_hints": []},
     {"match": ["mac os", "macos", "apple os x", "os x"], "platforms": {"macos": "Apple macOS"}, "version_hints": []},
     {"match": ["windows server 2016", "windows server 2019", "windows server 2022", "windows server", "windows 10", "windows 11", "windows"], "platforms": {"windows": "Microsoft Windows (all editions)"}, "version_hints": []},
     {"match": ["ubuntu"], "platforms": {"ubuntu20.04": "Ubuntu 20.04 LTS", "ubuntu22.04": "Ubuntu 22.04 LTS", "ubuntu24.04": "Ubuntu 24.04 LTS"}, "version_hints": [
@@ -29,7 +45,18 @@
     "windows": "Windows|Windows",
     "macos": "macOS|MacOS|mac_?os",
     "firefox": "Firefox",
-    "vsphere67": "[vV][sS]phere|ESXi|ESX|vCenter",
+    "vsphere65": "[vV][sS]phere|ESXi|ESX|vCenter|VCSA|vCA",
+    "vsphere67": "[vV][sS]phere|ESXi|ESX|vCenter|VCSA|vCA",
+    "vsphere70": "[vV][sS]phere|ESXi|ESX|vCenter|VCSA|vCA",
+    "vsphere80": "[vV][sS]phere|ESXi|ESX|vCenter|VCSA|vCA",
+    "nsx": "NSX",
+    "horizon": "Horizon",
+    "workspace_one": "WS1|Workspace",
+    "vra7": "vRA|vRealize",
+    "vrops6": "vROps|vRealize[_ ]Ops|Cassandra",
+    "citrix": "Citrix|Xen|VAD|VDA",
+    "exchange": "Exchange",
+    "outlook": "Outlook",
     "proxmox": "Proxmox|PVE"
   }
 }

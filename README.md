@@ -9,9 +9,18 @@ Live at: https://bedimsecurity.com/capabilities/kevstig/
 
 - **Routed**: a KEV entry's vendor/product text matches a platform family we
   maintain a manual STIG baseline for (Windows, macOS, RHEL 7/8/9,
-  Ubuntu 20.04/22.04/24.04, Firefox; Proxmox in build). The **VMware vSphere
-  family routes all versions** — the match keys `vsphere`, `esxi`, `vcenter`
-  hit every ESXi, vCenter Server, and vSphere string regardless of version.
+  Ubuntu 20.04/22.04/24.04, Firefox; Proxmox in build). The **VMware estate**:
+  vSphere 6.5/6.7/7.0/8.0 as per-generation rows — a stated version routes
+  that generation, an unstated one routes all four (the match keys `vsphere`,
+  `esxi`, `vcenter` hit every ESXi/vCenter/vSphere string regardless of
+  version) — plus vRealize Automation 7.x, vRealize Operations 6.x, NSX,
+  Horizon 7.13 and Workspace ONE UEM; **Citrix** Virtual Apps and Desktops /
+  XenDesktop 7.x, StoreFront, Workspace app and Receiver (NetScaler ADC,
+  ShareFile, SD-WAN and Session Recording stay uncovered — no baseline); and
+  **Microsoft email**: Exchange Server + Outlook. Empty-platforms guard
+  families deliberately exclude lookalike products (Aria Operations FOR
+  NETWORKS, Horizon DaaS, IKE "key exchange" strings that contain the
+  substring `exchange` but are not Microsoft Exchange).
 - **Routed is NOT remediated.** DISA manual STIGs harden configuration; they do
   not patch individual CVEs. Nothing here claims a rule neutralizes a specific
   CVE — the STIG XMLs we parse carry no CVE references (verified: 0 hits).
@@ -21,12 +30,18 @@ Live at: https://bedimsecurity.com/capabilities/kevstig/
 - Generic-family entries ("Linux Kernel", vendor bundles) stay uncovered v1 on
   purpose: the routing table matches products literally, never guesses.
 
-## Numbers at build time (2026-10-03, catalog 2026-10-02)
+## Numbers at build time (2026-10-05, catalog 2026-10-04) — after stig-baselines
+extended to the full VMware family + Citrix + Microsoft email (b3751d4)
 
-- Catalog: **1,733** KEV entries
-- Routed: **273** (Windows 179 / macOS 61 / vSphere 18 / Firefox 12 / RHEL rows 3 each)
-- Uncovered: **1,460** (the honest majority — KEV is appliance- and webapp-heavy)
-- Rules maintained across the baselines: **3,162** (counted from the checklists' Vuln_Num ids)
+- Catalog: **1,734** KEV entries
+- Routed: **298** (Windows 178 / macOS 61 / vSphere 18 per generation-row /
+  Exchange 18 / Firefox 12 / RHEL + vROps 3 each / Citrix + Outlook 2 each /
+  Workspace ONE 1)
+- Uncovered: **1,436** (the honest majority — KEV is appliance- and webapp-heavy;
+  NetScaler, ShareFile, SD-WAN, Session Recording, WS1 Access and the VMware
+  Tools/Spring/multi-product bundles stay uncovered on purpose)
+- Rules maintained across the baselines: **6,649** (counted from the checklists'
+  Vuln_Num ids; 22 platform rows)
 
 ## How it works
 
@@ -61,6 +76,10 @@ niche's crossroads — the HIBP/Shodan/VirusTotal pattern) from the
 publicity-casebook research corpus (103 verified campaigns; the "public goods
 as market gates" mechanism family). Corrections to the routing table are
 welcome as pull requests.
+
+2026-10-05: routing extended to the full VMware family, Citrix and Microsoft
+email baselines added to stig-baselines (fc0e040..b3751d4); exclusion guards
+added so lookalike products stay honestly uncovered.
 
 ---
 *Research and code by the Bedim Security agent fleet under human supervision.

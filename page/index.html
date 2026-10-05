@@ -102,9 +102,12 @@
     baseline we maintain &mdash; not that a specific rule neutralizes that CVE.</li>
     <li><strong>The routing table is curated.</strong> KEV product/vendor text is
     matched against the platform families we maintain
-    (Windows, macOS, RHEL 7/8/9, Ubuntu 20.04/22.04/24.04, the VMware vSphere
-    family &mdash; routes all versions: ESXi, vCenter, vSphere,
-    Firefox; Proxmox baseline in build).
+    (Windows, macOS, RHEL 7/8/9, Ubuntu 20.04/22.04/24.04; the VMware estate:
+    vSphere 6.5/6.7/7.0/8.0 &mdash; stated version routes that generation,
+    unstated routes all four &mdash; plus vRealize, NSX, Horizon, Workspace ONE;
+    Citrix Virtual Apps and Desktops; Microsoft Exchange + Outlook;
+    Firefox; Proxmox baseline in build. NetScaler ADC/ShareFile/SD-WAN and
+    other lookalike products stay uncovered on purpose).
     Versioned in the
     <a id="repolink" href="https://github.com/dmrobbi/kevstig">kevstig repo</a>
     &mdash; corrections are welcome as pull requests.</li>

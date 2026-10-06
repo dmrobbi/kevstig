@@ -8,7 +8,11 @@ mail. DIGEST BLAST: SENT 2026-10-04 16:05 UTC to the active subscriber list
 (1: wlrobbi@gmail.com) via drafts/send_launch_blast.py (same From/Reply-To/unsub
 token conventions as the daily digest; .digest-last untouched). HN/X posts:
 STILL DRAFTS — awaiting owner review + channel access (copy-paste or tokens).
-Voice rule from the casebook: numbers, artifacts, no adjectives._
+Voice rule from the casebook: numbers, artifacts,
+no adjectives. 2026-10-06: numbers refreshed to the post-retire build (1,734 /
+298 / 1,436 / 6,431 rules across 21 platform rows — the RHEL 7 EOL track retired
+and archived on the owner's call); the sent digest-blast record below stays as
+the historical record._
 
 ## 1. Show HN post
 
@@ -17,14 +21,17 @@ Voice rule from the casebook: numbers, artifacts, no adjectives._
 **First-comment text:**
 
 > kevstig answers one question: of CISA's known-exploited vulnerabilities
-> (1,733 entries today), how many touch platforms for which a maintained DISA
+> (1,734 entries today), how many touch platforms for which a maintained DISA
 > STIG baseline exists — and how many fall in the gap (appliances, web apps,
 > middleware).
 >
-> Today: 273 routed, 1,460 uncovered, 3,162 STIG rules across the maintained
-> set (Windows, macOS, RHEL 7/8/9, Ubuntu 20.04/22.04/24.04, vSphere 6.7,
-> Firefox). The uncovered count is published deliberately — it is the honest
-> boundary of the baseline set, not marketing.
+> Today: 298 routed, 1,436 uncovered, 6,431 STIG rules across the maintained
+> set (Windows, macOS, RHEL 8/9, Ubuntu 20.04/22.04/24.04; the full VMware
+> estate — vSphere 6.5/6.7/7.0/8.0 as per-generation rows plus vRealize
+> Operations/Automation, NSX, Horizon, Workspace ONE; Citrix Virtual Apps and
+> Desktops; Microsoft Exchange + Outlook; Firefox). The uncovered count is
+> published deliberately — it is the honest boundary of the baseline set, not
+> marketing.
 >
 > Semantics live on the page: routed is not remediated. DISA manual STIGs
 > harden configuration; they do not patch CVEs. The routing table is curated
@@ -40,7 +47,7 @@ Voice rule from the casebook: numbers, artifacts, no adjectives._
 
 > Is that exploited CVE in your hardening baseline's neighborhood?
 > kevstig: a live routing table between CISA's KEV catalog and the DISA STIG
-> baselines we maintain — 273 of 1,733 routed, the 1,460-entry gap published
+> baselines we maintain — 298 of 1,734 routed, the 1,436-entry gap published
 > on purpose. Per-CVE checks, public JSON API, refreshed nightly.
 > https://bedimsecurity.com/capabilities/kevstig/
 

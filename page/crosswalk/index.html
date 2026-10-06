@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KEV x STIG Coverage Crosswalk - Bedim Security</title>
+<meta name="description" content="The stable read of the KEV x STIG routing table: which known-exploited vulnerabilities route to which maintained DISA STIG baseline, per-baseline coverage with share of catalog, and the gap ledger. Routed is not remediated - the gap is published too.">
+<link rel="canonical" href="https://bedimsecurity.com/capabilities/kevstig/crosswalk/">
+<meta property="og:title" content="KEV x STIG Coverage Crosswalk - Bedim Security">
+<meta property="og:description" content="Which known-exploited vulnerabilities route to which maintained DISA STIG baselines - per-baseline coverage, the gap ledger, and the maintained-set decision.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#1a2233">
+<style>
+  :root { --slate-900:#1a2233; --gold-500:#c9a96a; --gold-ink:#8a6a2b; --paper:#fbfaf7; --ink:#242b3a; --muted:#5b6478; --line:#e3ded2; --block:#141b2d; --block-line:#2a3550; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.65 Georgia, 'Times New Roman', serif; }
+  .wrap { max-width:64ch; margin:0 auto; padding:0 20px; }
+  header.site { background:var(--slate-900); color:#f4efe6; }
+  header.site .wrap { padding:18px 20px; }
+  h1, h2, h3 { font-family:Georgia, serif; color:var(--slate-900); line-height:1.25; }
+  h1 { font-size:1.9rem; margin:0 0 .3em; }
+  h2 { font-size:1.3rem; margin-top:2em; }
+  a { color:var(--gold-ink); }
+  nav ul { list-style:none; display:flex; flex-wrap:wrap; gap:1.1em; margin:0; padding:0; font-size:.95rem; }
+  nav a { color:var(--gold-500); text-decoration:none; }
+  nav a[aria-current] { color:#fff; border-bottom:2px solid var(--gold-500); }
+  .lede { color:var(--muted); font-size:1.05rem; margin-top:.4em; }
+  .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin:1.6em 0; }
+  .metric { border:1px solid var(--line); border-radius:6px; padding:12px 14px; background:#fff; }
+  .metric .n { font-size:1.6rem; font-weight:bold; color:var(--slate-900); display:block; }
+  .metric .l { font-size:.85rem; color:var(--muted); }
+  .stamp { font-size:.85rem; color:var(--muted); }
+  table { border-collapse:collapse; width:100%; font-size:.92rem; margin:1em 0; }
+  th, td { text-align:left; padding:7px 9px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { color:var(--muted); font-weight:normal; text-transform:uppercase; font-size:.74rem; letter-spacing:.04em; }
+  td code { font-family:ui-monospace, Menlo, monospace; font-size:.86rem; }
+  .demo-block { background:var(--block); color:#e8e4d8; border:1px solid var(--block-line); border-radius:8px; padding:14px 16px; }
+  .muted { color:var(--muted); }
+  footer.site { margin-top:3em; padding:1.4em 0 2.4em; border-top:1px solid var(--line); font-size:.88rem; color:var(--muted); }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <nav aria-label="Core">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/capabilities/" aria-current="page">Capabilities</a></li>
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/news/">News</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <h1>KEV &times; STIG coverage crosswalk</h1>
+  <p class="lede">The stable read of the routing table behind the live checker:
+  which known-exploited vulnerabilities route to which maintained DISA STIG
+  baseline, per-baseline coverage, and the gap ledger.</p>
+  <p class="stamp">Built 2026-10-06 &middot; CISA KEV catalog version 2026-10-04 &middot;
+  checker API generated 2026-10-06 17:55 UTC. The catalog drifts daily; the <em>live</em>
+  per-entry routing always lives on <a href="/capabilities/kevstig/">the checker</a> and
+  <a href="/capabilities/kevstig/api/coverage.json">its public API</a> &mdash; this page
+  restamps with each document revision.</p>
+
+  <section aria-label="Headline">
+    <div class="metrics">
+      <div class="metric"><span class="n">1,734</span><span class="l">KEV entries in catalog</span></div>
+      <div class="metric"><span class="n">298</span><span class="l">route to maintained baselines (17.2%)</span></div>
+      <div class="metric"><span class="n">1,436</span><span class="l">touch no baseline we maintain (82.8%)</span></div>
+      <div class="metric"><span class="n">6,431</span><span class="l">STIG rules across the 21-row set</span></div>
+    </div>
+  </section>
+
+  <h2>What the crosswalk claims (and what it never will)</h2>
+  <ul>
+    <li><strong>Routed</strong> = a KEV entry's vendor/product text matches an ordered,
+    curated family whose platform key matches a maintained baseline. Curation carries
+    exclusion guards: lookalike products (Aria Operations <em>for Networks</em>,
+    Horizon DaaS, IKE "key exchange" strings) stay honestly uncovered.</li>
+    <li><strong>Routed is not remediated.</strong> DISA manual STIGs harden
+    configuration; the parsed STIG XMLs carry zero CVE references (verified). The
+    claim is accountability, not patching.</li>
+    <li><strong>The gap is the artifact.</strong> The uncovered majority is published
+    on purpose &mdash; it is the workload plan below.</li>
+  </ul>
+
+  <h2>Per-baseline coverage</h2>
+  <p>Share of catalog = platform routings &divide; 1,734 catalog entries: what slice of
+  the exploited-threat catalog lands on each maintained surface.</p>
+  <div class="demo-block" style="max-height:none; overflow:auto;">
+  <table>
+    <thead><tr><th>Platform</th><th>Label</th><th>CKLs</th><th>Rules</th><th>KEV routed</th><th>Share of catalog</th><th>Newest routed KEV</th></tr></thead>
+    <tbody>
+      <tr><td>windows</td><td>Microsoft Windows (all editions)</td><td>4</td><td>1,084</td><td>178</td><td>10.3%</td><td>2026-09-08</td></tr>
+      <tr><td>macos</td><td>Apple macOS</td><td>2</td><td>320</td><td>61</td><td>3.5%</td><td>2026-08-18</td></tr>
+      <tr><td>exchange</td><td>Microsoft Exchange</td><td>7</td><td>432</td><td>18</td><td>1.0%</td><td>2026-04-13</td></tr>
+      <tr><td>vsphere67</td><td>VMware vSphere 6.7</td><td>12</td><td>502</td><td>18</td><td>1.0%</td><td>2026-08-18</td></tr>
+      <tr><td>vsphere70</td><td>VMware vSphere 7.0</td><td>12</td><td>491</td><td>18</td><td>1.0%</td><td>2026-08-18</td></tr>
+      <tr><td>vsphere80</td><td>VMware vSphere 8.0</td><td>12</td><td>487</td><td>18</td><td>1.0%</td><td>2026-08-18</td></tr>
+      <tr><td>vsphere65</td><td>VMware vSphere 6.5</td><td>3</td><td>180</td><td>18</td><td>1.0%</td><td>2026-08-18</td></tr>
+      <tr><td>firefox</td><td>Mozilla Firefox</td><td>1</td><td>33</td><td>12</td><td>0.7%</td><td>2024-10-15</td></tr>
+      <tr><td>rhel8</td><td>RHEL 8</td><td>1</td><td>371</td><td>3</td><td>0.2%</td><td>2026-08-26</td></tr>
+      <tr><td>rhel9</td><td>RHEL 9</td><td>1</td><td>445</td><td>3</td><td>0.2%</td><td>2026-08-26</td></tr>
+      <tr><td>vrops6</td><td>VMware vRealize Operations 6.x</td><td>5</td><td>517</td><td>3</td><td>0.2%</td><td>2026-03-03</td></tr>
+      <tr><td>citrix</td><td>Citrix Virtual Apps and Desktops</td><td>13</td><td>49</td><td>2</td><td>0.1%</td><td>2021-11-03</td></tr>
+      <tr><td>outlook</td><td>Microsoft Outlook</td><td>2</td><td>146</td><td>2</td><td>0.1%</td><td>2025-02-06</td></tr>
+      <tr><td>workspace_one</td><td>VMware Workspace ONE UEM</td><td>1</td><td>20</td><td>1</td><td>0.06%</td><td>2026-03-09</td></tr>
+      <tr><td>horizon</td><td>VMware Horizon 7.13</td><td>3</td><td>57</td><td>0</td><td>0</td><td>&mdash;</td></tr>
+      <tr><td>nsx</td><td>VMware NSX</td><td>13</td><td>131</td><td>0</td><td>0</td><td>&mdash;</td></tr>
+      <tr><td>vra7</td><td>VMware vRealize Automation 7.x</td><td>8</td><td>611</td><td>0</td><td>0</td><td>&mdash;</td></tr>
+      <tr><td>ubuntu24.04</td><td>Ubuntu 24.04 LTS</td><td>1</td><td>194</td><td>0</td><td>0</td><td>&mdash;</td></tr>
+      <tr><td>ubuntu22.04</td><td>Ubuntu 22.04 LTS</td><td>1</td><td>188</td><td>0</td><td>0</td><td>&mdash;</td></tr>
+      <tr><td>ubuntu20.04</td><td>Ubuntu 20.04 LTS</td><td>1</td><td>173</td><td>0</td><td>0</td><td>&mdash;</td></tr>
+      <tr><td>proxmox</td><td>Proxmox VE (in build)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>&mdash;</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted">Archived from this table 2026-10-06 (owner call): the RHEL 7 EOL row
+  (1 CKL / 244 rules / 3 routings) &mdash; artifacts preserved under
+  <a href="https://github.com/dmrobbi/stig-baselines/tree/main/baselines/archive/rhel7">baselines/archive/rhel7</a>
+  in the public baseline mirror; restorable per that archive's README. The vSphere
+  generation rows plus 21 multi-platform entries explain why the 355 per-platform
+  routings exceed the 298 unique routed entries.</p>
+
+  <p>Maintained but not KEV-routed (no routing family in the v1 table):</p>
+  <div class="demo-block" style="max-height:none; overflow:auto;">
+  <table>
+    <thead><tr><th>Platform</th><th>Inventory</th><th>Rules</th></tr></thead>
+    <tbody>
+      <tr><td>kubernetes</td><td>DISA Kubernetes STIG V2R6 CKL + scan/harden kit + kube-bench runner</td><td>92</td></tr>
+      <tr><td>docker</td><td>SRG-anchored host kit (controls + scan/harden)</td><td>n/a (kit, not a CKL)</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>The gap ledger</h2>
+  <p class="muted">Top uncovered vendor+product clusters (KEV entries) &mdash; the
+  roadmap input:</p>
+  <div class="demo-block" style="max-height:none; overflow:auto;">
+  <table>
+    <thead><tr><th>Vendor</th><th>Product cluster</th><th>Entries</th></tr></thead>
+    <tbody>
+      <tr><td>Apple</td><td>Multiple Products</td><td>54</td></tr>
+      <tr><td>Google</td><td>Chromium V8</td><td>41</td></tr>
+      <tr><td>Microsoft</td><td>Internet Explorer</td><td>36</td></tr>
+      <tr><td>Adobe</td><td>Flash Player</td><td>33</td></tr>
+      <tr><td>Linux</td><td>Kernel</td><td>31</td></tr>
+      <tr><td>Microsoft</td><td>Office</td><td>29</td></tr>
+      <tr><td>Microsoft</td><td>Win32k</td><td>25</td></tr>
+      <tr><td>Synacor</td><td>Zimbra Collaboration Suite</td><td>16</td></tr>
+      <tr><td>Adobe</td><td>ColdFusion</td><td>16</td></tr>
+      <tr><td>Adobe</td><td>Acrobat and Reader</td><td>13</td></tr>
+      <tr><td>Samsung</td><td>Mobile Devices</td><td>13</td></tr>
+      <tr><td>Oracle</td><td>WebLogic Server</td><td>12</td></tr>
+      <tr><td>Palo Alto Networks</td><td>PAN-OS</td><td>12</td></tr>
+      <tr><td>Microsoft</td><td>SharePoint</td><td>10</td></tr>
+      <tr><td>Qualcomm</td><td>Multiple Chipsets</td><td>10</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted">Top uncovered vendors: Microsoft 192, Adobe 82, Google 75, Apple 71,
+  Cisco 68, Oracle 46, Apache 40, Ivanti 35, Fortinet 31, Linux 31.</p>
+  <p><strong>Roadmap candidates</strong> (recurring KEV presence + enterprise install
+  bases + hardening-guideline availability): Zimbra (16), Adobe ColdFusion (16),
+  PAN-OS (12), WebLogic (12), SharePoint (10), and the Cisco IOS/IOS-XE surface (68
+  across the vendor, no baseline yet). Deliberately low-priority: Flash Player and
+  Internet Explorer (dead products &mdash; coverage there buys nothing), generic vendor
+  bundles and the Linux Kernel family (kernel exposure inside a maintained OS lands
+  through that OS baseline's kernel rules).</p>
+
+  <h2>The maintained set (resolved 2026-10-06)</h2>
+  <p>The RHEL 7 EOL track was retired from the maintained set and the routing table on
+  the owner's call; its baseline artifacts are archived &mdash; not deleted &mdash; in
+  the baseline repo under <a href="https://github.com/dmrobbi/stig-baselines/tree/main/baselines/archive/rhel7">baselines/archive/rhel7</a>
+  (restore procedure in that archive's README). The maintained set is the 21 scoreboard
+  rows above plus the two maintained-but-unrouted rows; the routing table and the
+  checker API were rebuilt and redeployed the same day, gate-verified
+  (<code>KEVSTIG-OK&nbsp;platforms=21&nbsp;rules=6431&nbsp;routed=298</code>).</p>
+
+  <footer class="site">
+    <p>Composed and maintained by the Bedim Security agent fleet under human
+    supervision. Routing table: <a href="https://github.com/dmrobbi/kevstig">kevstig repo</a>
+    &middot; baseline mirror: <a href="https://github.com/dmrobbi/stig-baselines">stig-baselines</a>.
+    Back to <a href="/capabilities/kevstig/">the checker</a> or
+    <a href="/capabilities/">Capabilities</a>.</p>
+  </footer>
+</main>
+</body>
+</html>

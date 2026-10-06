@@ -1,5 +1,5 @@
 {
-  "note": "kevstig routing table (curated). Families are ordered; first family whose match hits the KEV (vendor + product) text wins; version_hints refine within a family, falling back to all platforms of the family when the version is unstated. An EMPTY-platforms family is a deliberate EXCLUSION GUARD: it stops matching and leaves the entry uncovered (e.g. NetScaler-era Citrix ADCs, Aria Operations for Networks, Horizon DaaS, IKE 'key exchange' strings that contain the substring 'exchange' but are not Microsoft Exchange). Platform keys match baselines/ directory names in stig-baselines. Platforms we do NOT maintain are left uncovered on purpose (honest gap).",
+  "note": "kevstig routing table (curated). Families are ordered; first family whose match hits the KEV (vendor + product) text wins; version_hints refine within a family, falling back to all platforms of the family when the version is unstated. An EMPTY-platforms family is a deliberate EXCLUSION GUARD: it stops matching and leaves the entry uncovered (e.g. NetScaler-era Citrix ADCs, Aria Operations for Networks, Horizon DaaS, IKE 'key exchange' strings that contain the substring 'exchange' but are not Microsoft Exchange). Platform keys match baselines/ directory names in stig-baselines. Platforms we do NOT maintain are left uncovered on purpose (honest gap). The RHEL 7 EOL track was retired from the routing table on the owner's call (2026-10-06); its baseline is archived in stig-baselines under baselines/archive/rhel7 (restorable per that archive's README).",
   "families": [
     {"match": ["mozilla firefox", " firefox ", "firefox"], "platforms": {"firefox": "Mozilla Firefox"}, "version_hints": []},
     {"match": ["proxmox"], "platforms": {"proxmox": "Proxmox VE"}, "version_hints": []},
@@ -27,18 +27,16 @@
       {"regex": "22\\.04", "platforms": ["ubuntu22.04"]},
       {"regex": "24\\.04", "platforms": ["ubuntu24.04"]}
     ]},
-    {"match": ["red hat", "redhat"], "strict": true, "platforms": {"rhel8": "RHEL 8", "rhel9": "RHEL 9", "rhel7": "RHEL 7 (EOL track)"}, "version_hints": [
-      {"regex": "(enterprise linux|rhel|red hat linux)[\\s_~-]*7", "platforms": ["rhel7"]},
+    {"match": ["red hat", "redhat"], "strict": true, "platforms": {"rhel8": "RHEL 8", "rhel9": "RHEL 9"}, "version_hints": [
       {"regex": "(enterprise linux|rhel|red hat linux)[\\s_~-]*8", "platforms": ["rhel8"]},
       {"regex": "(enterprise linux|rhel|red hat linux)[\\s_~-]*9", "platforms": ["rhel9"]},
-      {"regex": "(polkit|pkexec|libuser|abrt|kernel|glibc|linux)", "platforms": ["rhel7", "rhel8", "rhel9"]}
+      {"regex": "(polkit|pkexec|libuser|abrt|kernel|glibc|linux)", "platforms": ["rhel8", "rhel9"]}
     ]}
   ],
   "secondary_families": [],
   "ckl_hints": {
     "rhel9": "RHEL_9|Rhel9",
     "rhel8": "RHEL_8|Rhel8",
-    "rhel7": "RHEL_7|Rhel7",
     "ubuntu20.04": "Ubuntu[_ ]?(20)?[._-]?04",
     "ubuntu22.04": "Ubuntu[_ ]?(22)?[._-]?04",
     "ubuntu24.04": "Ubuntu[_ ]?(24)?[._-]?04",

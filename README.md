@@ -8,7 +8,7 @@ Live at: https://bedimsecurity.com/capabilities/kevstig/
 ## What it measures (and what it does NOT)
 
 - **Routed**: a KEV entry's vendor/product text matches a platform family we
-  maintain a manual STIG baseline for (Windows, macOS, RHEL 7/8/9,
+  maintain a manual STIG baseline for (Windows, macOS, RHEL 8/9,
   Ubuntu 20.04/22.04/24.04, Firefox; Proxmox in build). The **VMware estate**:
   vSphere 6.5/6.7/7.0/8.0 as per-generation rows — a stated version routes
   that generation, an unstated one routes all four (the match keys `vsphere`,
@@ -30,18 +30,20 @@ Live at: https://bedimsecurity.com/capabilities/kevstig/
 - Generic-family entries ("Linux Kernel", vendor bundles) stay uncovered v1 on
   purpose: the routing table matches products literally, never guesses.
 
-## Numbers at build time (2026-10-05, catalog 2026-10-04) — after stig-baselines
-extended to the full VMware family + Citrix + Microsoft email (b3751d4)
+## Numbers at build time (2026-10-06, catalog 2026-10-04) — RHEL 7 EOL track
+retired from the maintained set (owner call, 2026-10-06; baseline archived in
+stig-baselines under baselines/archive/rhel7)
 
 - Catalog: **1,734** KEV entries
 - Routed: **298** (Windows 178 / macOS 61 / vSphere 18 per generation-row /
-  Exchange 18 / Firefox 12 / RHEL + vROps 3 each / Citrix + Outlook 2 each /
+  Exchange 18 / Firefox 12 / RHEL 8/9 + vROps 3 each / Citrix + Outlook 2 each /
   Workspace ONE 1)
 - Uncovered: **1,436** (the honest majority — KEV is appliance- and webapp-heavy;
   NetScaler, ShareFile, SD-WAN, Session Recording, WS1 Access and the VMware
   Tools/Spring/multi-product bundles stay uncovered on purpose)
-- Rules maintained across the baselines: **6,649** (counted from the checklists'
-  Vuln_Num ids; 22 platform rows)
+- Rules maintained across the baselines: **6,431** (counted from the checklists'
+  Vuln_Num ids; 21 platform rows — the RHEL 7 EOL track archived out of the set,
+  see stig-baselines baselines/archive/README.md)
 
 ## How it works
 
@@ -80,6 +82,10 @@ welcome as pull requests.
 2026-10-05: routing extended to the full VMware family, Citrix and Microsoft
 email baselines added to stig-baselines (fc0e040..b3751d4); exclusion guards
 added so lookalike products stay honestly uncovered.
+
+2026-10-06: RHEL 7 EOL track retired from the routing table and the maintained
+set (owner call); baseline archived in stig-baselines baselines/archive/rhel7 —
+scoreboard now 21 platform rows / 6,431 rules; rebuild + redeploy verified.
 
 ---
 *Research and code by the Bedim Security agent fleet under human supervision.

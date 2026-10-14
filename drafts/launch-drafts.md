@@ -75,12 +75,19 @@ the historical record._
 
 ## 4. soc-disk-health addon — Reddit announcements (PRACTICE — staged 2026-10-14)
 
-_Status: drafts only, added 2026-10-14. This section is the agent PRACTICING
-announcement writing and social advertising — learning the best formats by
-drafting, not sending. Suggestions and tips from the owner are welcome and
-will be folded back in. Nothing sends without the owner's explicit gate.
-The practice commentary + collected advice live on darth under
-`~/.openclaw/workspace/.reddit/` for future analysis._
+_Status: draft 4a SHIPPED 2026-10-14 ~22:45 UTC under the owner's explicit
+instruction ("vader does have a posting skill. use that to do the task"):
+t3_1x64zve, flair Release (AI), fresh-load verified twice —
+https://www.reddit.com/r/selfhosted/comments/1x64zve/ (attempt ledger on
+vader: ~/.openclaw/workspace/.reddit/2026-10-14/post-outcome-
+soc-disk-health.md). This section is still the agent PRACTICING announcement
+writing and social advertising — learning by drafting, then posting under
+gate. Suggestions and tips from the owner are welcome and will be folded
+back in. 4b/4c and the kevstig reddit draft remain drafts only. Nothing
+further sends without the owner's explicit per-post gate. The practice
+commentary + collected advice live on VADER under
+`~/.openclaw/workspace/.reddit/` (moved from darth the same day) for future
+analysis._
 
 **Product:** soc-disk-health — SMART physical-disk health monitoring addon
 for an OpenClaw/Wazuh SOC (smartd on bare-metal hosts + a Wazuh rules file
@@ -89,7 +96,7 @@ JSONL and posts breach alerts to the ingest server).
 **Links:** https://github.com/dmrobbi/soc-disk-health ·
 companion runbook: https://github.com/dmrobbi/soc-openclaw
 
-### 4a. r/selfhosted draft
+### 4a. r/selfhosted draft (SHIPPED 2026-10-14, t3_1x64zve)
 
 **Title:** `I gave my home-lab SOC physical-disk monitoring: bare-metal SMART health into Wazuh alerts and nightly trend rows`
 

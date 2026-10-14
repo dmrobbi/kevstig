@@ -75,19 +75,16 @@ the historical record._
 
 ## 4. soc-disk-health addon — Reddit announcements (PRACTICE — staged 2026-10-14)
 
-_Status: draft 4a SHIPPED 2026-10-14 ~22:45 UTC under the owner's explicit
-instruction ("vader does have a posting skill. use that to do the task"):
-t3_1x64zve, flair Release (AI), fresh-load verified twice —
-https://www.reddit.com/r/selfhosted/comments/1x64zve/ (attempt ledger on
-vader: ~/.openclaw/workspace/.reddit/2026-10-14/post-outcome-
-soc-disk-health.md). This section is still the agent PRACTICING announcement
-writing and social advertising — learning by drafting, then posting under
-gate. Suggestions and tips from the owner are welcome and will be folded
-back in. 4b/4c and the kevstig reddit draft remain drafts only. Nothing
-further sends without the owner's explicit per-post gate. The practice
-commentary + collected advice live on VADER under
-`~/.openclaw/workspace/.reddit/` (moved from darth the same day) for future
-analysis._
+_Status: 4a shipped 2026-10-14 ~22:45 UTC (t3_1x64zve, flair initially
+"Release (AI)", changed to "Product Announcement" ~22:55 per the owner's
+public-surface policy; the post was then REMOVED by an r/selfhosted
+moderator ~23:0x citing rule 6 — new projects belong in the weekly New
+Project Megathread). The announcement now lives as a comment in the
+current megathread: t1_pgsh6g5 on t3_1x145j7 ("New Project Megathread -
+Week of 08 Oct 2026"), posted + fresh-load verified through the same
+owner-gated path. 4b/4c and the kevstig reddit draft remain staged.
+Posting stays owner-gated per post. Working records (attempt ledgers,
+practice log, advice) live on vader: ~/.openclaw/workspace/.reddit/._
 
 **Product:** soc-disk-health — SMART physical-disk health monitoring addon
 for an OpenClaw/Wazuh SOC (smartd on bare-metal hosts + a Wazuh rules file
@@ -96,7 +93,7 @@ JSONL and posts breach alerts to the ingest server).
 **Links:** https://github.com/dmrobbi/soc-disk-health ·
 companion runbook: https://github.com/dmrobbi/soc-openclaw
 
-### 4a. r/selfhosted draft (SHIPPED 2026-10-14, t3_1x64zve)
+### 4a. r/selfhosted draft (shipped then removed by mod — megathread carries it; see status)
 
 **Title:** `I gave my home-lab SOC physical-disk monitoring: bare-metal SMART health into Wazuh alerts and nightly trend rows`
 

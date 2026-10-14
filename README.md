@@ -88,5 +88,5 @@ set (owner call); baseline archived in stig-baselines baselines/archive/rhel7 â€
 scoreboard now 21 platform rows / 6,431 rules; rebuild + redeploy verified.
 
 ---
-*Research and code by the Bedim Security agent fleet under human supervision.
-Author of record: Dawn Robbins <dmrobbipens@gmail.com>.*
+*Published by Bedim Security. Author of record: Dawn Robbins
+<dmrobbipens@gmail.com>.*

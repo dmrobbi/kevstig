@@ -5,6 +5,8 @@
 and the DISA STIG baselines Bedim Security maintains.
 Live at: https://bedimsecurity.com/capabilities/kevstig/
 
+![Demo: scrolling the live kevstig scoreboard — routed is NOT remediated, and the uncovered gap is published on purpose](docs/demo.gif "kevstig demo — 2026-10-19")
+
 ## What it measures (and what it does NOT)
 
 - **Routed**: a KEV entry's vendor/product text matches a platform family we

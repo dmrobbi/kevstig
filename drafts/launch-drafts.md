@@ -181,3 +181,17 @@ companion runbook: https://github.com/dmrobbi/soc-openclaw
 > Thresholds: critical_warning != 0 | media growth | percentage_used >=
 > 90 | temperature >= 65 C. Corrections and config improvements more
 > than welcome.
+
+### 5. Promo wave #1 — LinkedIn + Reddit (P5.2/P5.3) — 2026-10-19
+
+- Owner GO recorded for the wave (chat 2026-10-19 ~01:03 UTC, wez): the
+  drafts stage with GO; LinkedIn fires by hand (no automation path in the
+  estate); Reddit needs the submit-time venue checks (rendered /submit rules
+  first; r/selfhosted stays megathread-class per the 4a lesson).
+- Full staged copies live in thing1's publicity-casebook post-queue
+  (post-queue/drafts/2026-10-19-linkedin-1.md + 2026-10-19-reddit-1.md) —
+  single source of truth; practice mirrors sit on vader
+  (.reddit/2026-10-19/).
+- Reddit target: r/cybersecurity value-first (the story: what I got wrong
+  running a one-person agentic SOC; links follow the value). LinkedIn: the
+  2026-10-19 nine-repo fleet state with the honest limits as the close.

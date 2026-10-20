@@ -4,6 +4,7 @@
 [Known Exploited Vulnerabilities catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
 and the DISA STIG baselines Bedim Security maintains.
 Live at: https://bedimsecurity.com/capabilities/kevstig/
+Docs: https://dmrobbi.github.io/kevstig/
 
 ![Demo: scrolling the live kevstig scoreboard — routed is NOT remediated, and the uncovered gap is published on purpose](docs/demo.gif "kevstig demo — 2026-10-19")
 
